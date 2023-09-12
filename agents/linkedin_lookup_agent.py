@@ -16,6 +16,11 @@ def lookup(name: str) -> str:
             name="Crawl Google 4 linkedin profile page",
             func=get_profile_url,
             description="useful for when you need get the Linkedin Page URL",
+        ),
+        Tool(
+            name="Crawl Google 4 facebook profile page",
+            func=get_profile_url,
+            description="useful for when you need get the Facebook profile URL",
         )
     ]
 
