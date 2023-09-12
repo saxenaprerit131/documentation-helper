@@ -15,9 +15,11 @@ nltk = "*"
 fastapi = "*"
 jinja2 = "*"
 uvicorn = "*"
+speech_recognition
 streamlit = "*"
 streamlit-chat = "*"
 tqdm = "*"
+pyaudio
 pypdf
 python-dotenv = "*"
 
