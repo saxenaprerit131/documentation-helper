@@ -7,8 +7,8 @@ This is a web application is using a Pinecone as a vectorsotre and answers quest
 (sources from LangChain official documentation). 
 
 
-![Logo](https://github.com/emarco177/documentation-helper/blob/main/static/banner.gif)
-[![udemy](https://img.shields.io/badge/LangChain%20Udemy%20Course-%2412.99-green)](https://www.udemy.com/course/langchain/?couponCode=LANGCHAINCD8C0B4060)
+![Logo](./static/banner.gif)
+
 
 ## Environment Variables
 
@@ -23,7 +23,7 @@ To run this project, you will need to add the following environment variables to
 Clone the project
 
 ```bash
-  git clone https://github.com/emarco177/documentation-helper.git
+  git clone https://github.com/saxenaprerit131/documentation-helper.git
 ```
 
 Go to the project directory
@@ -32,7 +32,7 @@ Go to the project directory
   cd documentation-helper
 ```
 
-Download LangChain Documentation
+Keep inputs for Pinecone here
 ```bash
   mkdir langchain-docs
   wget -r -A.html -P langchain-docs https://python.langchain.com/en/latest/index.html
@@ -61,6 +61,6 @@ To run tests, run the following command
 
 
 ## 🔗 Links
-[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://www.udemy.com/course/langchain/?referralCode=D981B8213164A3EA91AC)
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/eden-marco/)
-[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://www.udemy.com/user/eden-marco/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/prerit-saxena-adp/)
+[![facebook](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://www.facebook.com/prerit.saxena.7/)
+[![instagram](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://instagram.com/prerit.131)

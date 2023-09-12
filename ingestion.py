@@ -1,6 +1,6 @@
 import os
 
-from langchain.document_loaders import ReadTheDocsLoader, PyPDFLoader
+from langchain.document_loaders import ReadTheDocsLoader, PyPDFLoader, CSVLoader, UnstructuredExcelLoader
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import Pinecone
@@ -16,7 +16,9 @@ INDEX_NAME = "langchain-doc-index"
 def ingest_docs():
 
     # create a loader
-    loader = PyPDFLoader("./langchain-docs/Tips_PerfectPayroll.pdf")
+    loader = PyPDFLoader("./langchain-docs/gettingstarted.pdf")
+    #loader = CSVLoader(file_path="./langchain-docs/csv_sample_2.csv")
+    #loader = UnstructuredExcelLoader("./langchain-docs/DeductionSummary.xls", mode="elements")
 
     # load your data
     raw_documents = loader.load()
