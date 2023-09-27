@@ -1,6 +1,6 @@
 import os
 
-from langchain.document_loaders import ReadTheDocsLoader, PyPDFLoader, CSVLoader, UnstructuredExcelLoader
+from langchain.document_loaders import ReadTheDocsLoader, PyPDFLoader, CSVLoader, UnstructuredExcelLoader, TextLoader
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.vectorstores import Pinecone
@@ -10,15 +10,16 @@ pinecone.init(
     api_key=os.environ["PINECONE_API_KEY"],
     environment=os.environ["PINECONE_ENVIRONMENT_REGION"],
 )
-INDEX_NAME = "langchain-doc-index"
+INDEX_NAME = "phildemo-index"
 
 
 def ingest_docs():
 
     # create a loader
-    loader = PyPDFLoader("./langchain-docs/gettingstarted.pdf")
-    #loader = CSVLoader(file_path="./langchain-docs/csv_sample_2.csv")
-    #loader = UnstructuredExcelLoader("./langchain-docs/DeductionSummary.xls", mode="elements")
+    # loader = PyPDFLoader("./langchain-docs/taxrules.txt")
+    # loader = CSVLoader(file_path="./langchain-docs/csv_sample_1.csv")
+    # loader = UnstructuredExcelLoader("./langchain-docs/DeductionSummary.xls", mode="elements")
+    loader = TextLoader("./langchain-docs/taxrules.txt")
 
     # load your data
     raw_documents = loader.load()

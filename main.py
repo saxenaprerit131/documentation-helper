@@ -6,11 +6,18 @@ from backend.core import run_llm
 import streamlit as st
 from streamlit_chat import message
 
-from langchain import PromptTemplate
+from langchain import PromptTemplate, OpenAI
 from langchain.chat_models import ChatOpenAI
-from langchain.chains import LLMChain
+from langchain.chains import LLMChain, SimpleSequentialChain
 from agents.linkedin_lookup_agent import lookup as linkedin_lookup_agent
 from third_parties.linkedin import scrape_linkedin_profile
+
+from langchain.agents import create_pandas_dataframe_agent
+import pandas as pd
+from dotenv import load_dotenv
+import json
+
+load_dotenv()
 
 
 def searchOnSocialNetworks(name):
@@ -43,7 +50,7 @@ def searchOnSocialNetworks(name):
         st.session_state.count += 1
 
 
-def searchInPineCone(prompt):
+def searchInPineCone(prompt, includeVisualization):
     with st.spinner("Generating response using inputs from PineCone..."):
         prompt = prompt + " for Company Id: " + option
         print("Prompt:" + prompt)
@@ -64,7 +71,7 @@ def searchInPineCone(prompt):
         st.session_state.count += 1
 
 
-def generalWebSearch(generalSearch):
+def generalWebSearch(generalSearch, includeVisualization):
     with st.spinner("Generating response using inputs from General Web Search..."):
         generalSearch = generalSearch + " for Company Id: " + option
         # First, let's get the available information from PineCone storage
@@ -129,14 +136,16 @@ if (
     st.session_state["chat_history"] = []
     st.session_state["count"] = 0
 
-option = st.selectbox("Select client ID to query for:", ("23233423", "24342432"))
+option = st.selectbox("Select client ID to query for:", ("24353455", "23454544"))
 
-includeGeneralWebSearch = st.checkbox("Include General Web Search")
+includeGeneralWebSearch = st.checkbox("Include Web Search")
+
+includeVisualization = st.checkbox("Include visuals in result")
 
 placeholder = st.empty()
 prompt = placeholder.text_input("Prompt", placeholder="Enter your message here...")
 
-if st.button('Speak'):
+if st.button("Speak"):
     init_rec = sr.Recognizer()
     with sr.Microphone() as source:
         audio_data = init_rec.record(source, duration=5)
@@ -147,23 +156,22 @@ if st.button('Speak'):
 
 if prompt:
     if includeGeneralWebSearch:
-        generalWebSearch(prompt)
+        generalWebSearch(prompt, includeVisualization)
     else:
-        searchInPineCone(prompt)
+        searchInPineCone(prompt, includeVisualization)
     prompt = st.empty()
 
 
 if st.session_state["chat_answers_history"]:
-    i = 1 
+    i = 1
     for generated_response, user_query in zip(
         st.session_state["chat_answers_history"],
         st.session_state["user_prompt_history"],
     ):
-     if i == st.session_state.count:
-        message(
-            user_query,
-            is_user=True,
-        )
-        message(generated_response)
-     i += 1       
-        
+        if i == st.session_state.count:
+            message(
+                user_query,
+                is_user=True,
+            )
+            message(generated_response)
+        i += 1
